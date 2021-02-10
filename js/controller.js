@@ -38,14 +38,15 @@ var gImgs = [
     keywords: ['feeling', 'funy'],
   },
 ];
-var fontSize = 60;
+let defaultFontSize = 60;
 var yStart = 80;
+let img;
 var gMeme = {
   selectedImgId: 1,
   selectedLineIdx: 0,
   lines: [
-    { txt: ' ', align: 'center', color: 'red', outline: 'black', yPos: yStart },
-    { txt: ' ', align: 'center', color: 'blue', outline: 'red', yPos: yStart + 100 },
+    { txt: ' ', fontSize: defaultFontSize, align: 'center', color: 'red', outline: 'black', yPos: yStart },
+    { txt: ' ', fontSize: defaultFontSize, align: 'center', color: 'blue', outline: 'red', yPos: yStart + 100 },
   ],
 };
 function init() {
@@ -60,40 +61,48 @@ function renderGallery() {
 }
 
 function getPicGallery() {
-  let strHtml = gImgs.map((img) => {
-    return `<div class="pic-gallery" onClick="setBackgroundImg(${img.id})"><img src="${img.url}"></div>`;
+  let strHtml = gImgs.map((image) => {
+    return `<div class="pic-gallery" onClick="toggleMemesGenerator(${image.id})"><img src="${image.url}"></div>`;
   });
   return strHtml;
 }
 
-function toggleMemsGenerator() {
+function toggleMemesGenerator(imgId) {
   let elMainContainer = document.querySelector('.memes-generator');
   elMainContainer.classList.remove('display-hide');
   let elGallery = document.querySelector('.gallery');
   elGallery.classList.add('display-hide');
-}
-function setBackgroundImg(pic) {
-  const img = new Image();
-  img.src = `img/${pic}.jpg`;
+  gMeme.selectedImgId = imgId;
+  img = new Image();
+  img.src = `img/${imgId}.jpg`;
   img.onload = () => {
-    gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
+    setBackgroundImg(img);
   };
-  gMeme.selectedImgId = pic;
-  toggleMemsGenerator();
+}
+function setBackgroundImg(image) {
+  gCtx.drawImage(image, 0, 0, gCanvas.width, gCanvas.height);
 }
 
 function cleanCanvas() {
-  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
+  gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+}
+
+function resetDraw() {
+  cleanCanvas();
+  setBackgroundImg(img);
+  gMeme.lines.forEach((meme) => {
+    drawText(meme);
+  });
 }
 
 function onChnageTextInput(textInput) {
   if (!textInput) return;
   gMeme.lines[gMeme.selectedLineIdx].txt = textInput;
-  drawText();
+  resetDraw();
 }
 
-function drawText() {
-  const { outline, align, txt, yPos, color } = gMeme.lines[gMeme.selectedLineIdx];
+function drawText(line) {
+  const { outline, align, txt, yPos, color, fontSize } = line;
   gCtx.lineWidth = 2;
   gCtx.strokeStyle = color;
   gCtx.fillStyle = outline;
@@ -104,31 +113,38 @@ function drawText() {
 }
 
 function changeLine() {
-  console.log(gMeme.selectedLineIdx);
   if (gMeme.selectedLineIdx >= gMeme.lines.length - 1) {
     gMeme.selectedLineIdx = 0;
   } else {
     gMeme.selectedLineIdx = gMeme.selectedLineIdx + 1;
   }
 }
-// function updateRow() {
-//   if (gMeme.selectedLineIdx < 1) return;
-//   if (gMeme.selectedLineIdx > gMeme.lines.length) return;
-//   if (gMeme.selectedLineIdx === 1) gMeme.selectedLineIdx++;
-//   if (gMeme.selectedLineIdx > 1 && gMeme.selectedLineIdx <= gMeme.lines.length) gMeme.selectedLineIdx--;
-//   gMeme.selectedLineIdx = gMeme.selectedLineIdx;
-// }
+
 function addLine() {
   const [lastLine] = gMeme.lines.slice(-1);
-  console.table(lastLine);
-  gMeme.lines.push({ txt: '', size: 80, align: 'center', color: 'black', outline: 'red', yPos: lastLine.yPos + 100 });
+  gMeme.lines.push({
+    txt: '',
+    fontSize: defaultFontSize,
+    align: 'center',
+    color: 'black',
+    outline: 'red',
+    yPos: lastLine.yPos + 100,
+  });
   gMeme.selectedLineIdx = gMeme.lines.length - 1;
 }
 function increaseFont() {
-    if(fontSize>=200)return
-    fontSize += 10;
+  const line = gMeme.lines[gMeme.selectedLineIdx];
+  if (line.fontSize >= 200 ) return;
+  if (defaultFontSize >= 200) return;
+  line.fontSize += 10;
+  defaultFontSize += 10;
+  resetDraw();
 }
 function decreaseFont() {
-    if(fontSize<=10)return
-  fontSize -= 10;
+  const line = gMeme.lines[gMeme.selectedLineIdx];
+  if (line.fontSize <= 10) return;
+  if (defaultFontSize <= 10) return;
+  line.fontSize -= 10;
+  defaultFontSize -= 10;
+  resetDraw();
 }
