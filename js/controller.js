@@ -38,11 +38,15 @@ var gImgs = [
     keywords: ['feeling', 'funy'],
   },
 ];
-var gMeme= ({
-    selectedImgId: 1,
-    selectedLineIdx: 1,
-    lines: [{ txt: 'I never eat Falafel', size: 20, align: 'left', color: 'red' }],
-  });
+var gMeme = {
+  selectedImgId: 0,
+  selectedLineIdx: 1,
+  lines: [
+    { txt: ' ', size: 100, align: 'center', color: 'red', outline: 'black' },
+    { txt: ' ', size: 100, align: 'center', color: 'blue', outline: 'red' },
+  ],
+};
+var gCurrLine = gMeme.selectedLineIdx;
 
 function init() {
   gCanvas = document.querySelector('#my-canvas');
@@ -51,7 +55,6 @@ function init() {
 }
 function renderGallery() {
   let strHtml = getPicGallery();
-  console.log('strHtml:', strHtml);
   let elGallery = document.querySelector('.gallery');
   elGallery.innerHTML = strHtml;
 }
@@ -64,12 +67,13 @@ function getPicGallery() {
 }
 
 function setBackgroundImg(pic) {
-  console.log('pic:', pic);
+  //   console.log('pic:', pic);
   const img = new Image();
   img.src = `img/${pic}.jpg`;
   img.onload = () => {
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
   };
+  gMeme.selectedImgId = pic;
   toggleMemsGenerator();
 }
 
@@ -79,13 +83,40 @@ function toggleMemsGenerator() {
   let elGallery = document.querySelector('.gallery');
   elGallery.classList.add('display-hide');
 }
-function drawText(text, x=250, y=50) {
-    console.log(text)
-    gCtx.lineWidth = 2
-    gCtx.strokeStyle = document.querySelector('input.fill-txt').value
-    gCtx.fillStyle = document.querySelector('input.outline-color-txt').value
-    gCtx.font = '40px Arial'
-    gCtx.textAlign = 'center'
-    gCtx.fillText(text, x, y)
-    gCtx.strokeText(text, x, y)
+
+function onChnageTextInput(textInput) {
+  console.log('gMeme.lines[gCurrLine].txt:', gMeme.lines[gCurrLine].txt);
+  gMeme.lines[gCurrLine].txt = textInput;
+  drawText();
+}
+
+function cleanCanvas() {
+  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
+}
+
+function drawText() {
+  gCtx.lineWidth = 2;
+  gCtx.strokeStyle = gMeme.lines[gCurrLine].color;
+  gCtx.fillStyle = gMeme.lines[gCurrLine].outline;
+  gCtx.font = gMeme.lines[gCurrLine].size + 'px' + ' Arial';
+  console.log('gCtx.font:', gCtx.font);
+  gCtx.textAlign = gMeme.lines[gCurrLine].align;
+  let currPos = lineToPix();
+  let [xPos, yPos] = currPos;
+  gCtx.fillText(gMeme.lines[gCurrLine].txt, xPos, yPos);
+  gCtx.strokeText(gMeme.lines[gCurrLine].txt, xPos, yPos);
+}
+
+function lineToPix() {
+  let line1 = [250, 50];
+  let line2 = [250, 450];
+  if (gMeme.selectedLineIdx === 0) return line1;
+  if (gMeme.selectedLineIdx === 1) return line2;
+}
+function updateRow() {
+  if (gCurrLine < 0) return;
+  if (gCurrLine > gMeme.lines.length) return;
+  if (gCurrLine === 0) gCurrLine++;
+  if (gCurrLine === 1) gCurrLine--;
+  gMeme.selectedLineIdx = gCurrLine;
 }
