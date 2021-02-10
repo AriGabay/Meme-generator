@@ -38,16 +38,16 @@ var gImgs = [
     keywords: ['feeling', 'funy'],
   },
 ];
+var fontSize = 60;
+var yStart = 80;
 var gMeme = {
-  selectedImgId: 0,
-  selectedLineIdx: 1,
+  selectedImgId: 1,
+  selectedLineIdx: 0,
   lines: [
-    { txt: ' ', size: 100, align: 'center', color: 'red', outline: 'black' },
-    { txt: ' ', size: 100, align: 'center', color: 'blue', outline: 'red' },
+    { txt: ' ', align: 'center', color: 'red', outline: 'black', yPos: yStart },
+    { txt: ' ', align: 'center', color: 'blue', outline: 'red', yPos: yStart + 100 },
   ],
 };
-var gCurrLine = gMeme.selectedLineIdx;
-
 function init() {
   gCanvas = document.querySelector('#my-canvas');
   gCtx = gCanvas.getContext('2d');
@@ -66,8 +66,13 @@ function getPicGallery() {
   return strHtml;
 }
 
+function toggleMemsGenerator() {
+  let elMainContainer = document.querySelector('.memes-generator');
+  elMainContainer.classList.remove('display-hide');
+  let elGallery = document.querySelector('.gallery');
+  elGallery.classList.add('display-hide');
+}
 function setBackgroundImg(pic) {
-  //   console.log('pic:', pic);
   const img = new Image();
   img.src = `img/${pic}.jpg`;
   img.onload = () => {
@@ -77,46 +82,53 @@ function setBackgroundImg(pic) {
   toggleMemsGenerator();
 }
 
-function toggleMemsGenerator() {
-  let elMainContainer = document.querySelector('.memes-generator');
-  elMainContainer.classList.remove('display-hide');
-  let elGallery = document.querySelector('.gallery');
-  elGallery.classList.add('display-hide');
-}
-
-function onChnageTextInput(textInput) {
-  console.log('gMeme.lines[gCurrLine].txt:', gMeme.lines[gCurrLine].txt);
-  gMeme.lines[gCurrLine].txt = textInput;
-  drawText();
-}
-
 function cleanCanvas() {
   gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 }
 
-function drawText() {
-  gCtx.lineWidth = 2;
-  gCtx.strokeStyle = gMeme.lines[gCurrLine].color;
-  gCtx.fillStyle = gMeme.lines[gCurrLine].outline;
-  gCtx.font = gMeme.lines[gCurrLine].size + 'px' + ' Arial';
-  console.log('gCtx.font:', gCtx.font);
-  gCtx.textAlign = gMeme.lines[gCurrLine].align;
-  let currPos = lineToPix();
-  let [xPos, yPos] = currPos;
-  gCtx.fillText(gMeme.lines[gCurrLine].txt, xPos, yPos);
-  gCtx.strokeText(gMeme.lines[gCurrLine].txt, xPos, yPos);
+function onChnageTextInput(textInput) {
+  if (!textInput) return;
+  gMeme.lines[gMeme.selectedLineIdx].txt = textInput;
+  drawText();
 }
 
-function lineToPix() {
-  let line1 = [250, 50];
-  let line2 = [250, 450];
-  if (gMeme.selectedLineIdx === 0) return line1;
-  if (gMeme.selectedLineIdx === 1) return line2;
+function drawText() {
+  const { outline, align, txt, yPos, color } = gMeme.lines[gMeme.selectedLineIdx];
+  gCtx.lineWidth = 2;
+  gCtx.strokeStyle = color;
+  gCtx.fillStyle = outline;
+  gCtx.font = fontSize + 'px' + ' Arial';
+  gCtx.textAlign = align;
+  gCtx.fillText(txt, 250, yPos);
+  gCtx.strokeText(txt, 250, yPos);
 }
-function updateRow() {
-  if (gCurrLine < 0) return;
-  if (gCurrLine > gMeme.lines.length) return;
-  if (gCurrLine === 0) gCurrLine++;
-  if (gCurrLine === 1) gCurrLine--;
-  gMeme.selectedLineIdx = gCurrLine;
+
+function changeLine() {
+  console.log(gMeme.selectedLineIdx);
+  if (gMeme.selectedLineIdx >= gMeme.lines.length - 1) {
+    gMeme.selectedLineIdx = 0;
+  } else {
+    gMeme.selectedLineIdx = gMeme.selectedLineIdx + 1;
+  }
+}
+// function updateRow() {
+//   if (gMeme.selectedLineIdx < 1) return;
+//   if (gMeme.selectedLineIdx > gMeme.lines.length) return;
+//   if (gMeme.selectedLineIdx === 1) gMeme.selectedLineIdx++;
+//   if (gMeme.selectedLineIdx > 1 && gMeme.selectedLineIdx <= gMeme.lines.length) gMeme.selectedLineIdx--;
+//   gMeme.selectedLineIdx = gMeme.selectedLineIdx;
+// }
+function addLine() {
+  const [lastLine] = gMeme.lines.slice(-1);
+  console.table(lastLine);
+  gMeme.lines.push({ txt: '', size: 80, align: 'center', color: 'black', outline: 'red', yPos: lastLine.yPos + 100 });
+  gMeme.selectedLineIdx = gMeme.lines.length - 1;
+}
+function increaseFont() {
+    if(fontSize>=200)return
+    fontSize += 10;
+}
+function decreaseFont() {
+    if(fontSize<=10)return
+  fontSize -= 10;
 }

@@ -30,14 +30,17 @@
                 <canvas id="my-canvas" width="500" height="500"></canvas>
             </div>
             <div class="actions-on-meme grid">
-                <input type="txt" placeholder="Input Text" name="input-txt" id="input-txt" onchange="onChnageTextInput(this.value)">
-                <button type="button" class="button-generator select-row-txt" onclick="updateRow()"><img
-                        src="img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png"></button>
-                <button type="button" class="button-generator button-plus"><img src="img/ICONS/add.png"></button>
+                <input type="txt" placeholder="Input Text" name="input-txt" id="input-txt"
+                    onchange="onChnageTextInput(this.value)">
+                <button type="button" class="button-generator select-row-txt"><img
+                        src="img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png"
+                        onclick="changeLine()"></button>
+                <button type="button" class="button-generator button-plus" onclick="addLine()"><img
+                        src="img/ICONS/add.png"></button>
                 <button type="button" class="button-generator button-remove"><img src="img/ICONS/trash.png"></button>
-                <button type="button" class="button-generator font-size-plus"><img
+                <button type="button" class="button-generator font-size-plus" onclick="increaseFont()"><img
                         src="img/ICONS/increase font - icon.png"></button>
-                <button type="button" class="button-generator font-size-minus"><img
+                <button type="button" class="button-generator font-size-minus" onclick="decreaseFont()"><img
                         src="img/ICONS/decrease font - icon.png"></button>
                 <button type="button" class="button-generator left-to-right"><img
                         src="img/ICONS/align-to-left.png"></button>
