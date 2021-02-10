@@ -58,7 +58,7 @@ ul li {
     grid-gap: 10px;
     grid-template-areas:
     " input-txt input-txt input-txt input-txt input-txt"
-    " . select-row-txt button-plus button-remove . "
+    " show-line-number select-row-txt button-plus button-remove . "
     " font-size-plus font-size-minus left-to-right center-txt right-to-left "
     " select-impcat select-impcat select-impcat fill-txt outline-color-txt "
 }
@@ -105,6 +105,9 @@ ul li {
 
 .fill-txt {
     grid-area: fill-txt;
+}
+.show-line-number{
+grid-column: show-line-number;
 }
 
 .outline-color-txt {

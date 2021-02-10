@@ -45,8 +45,24 @@ var gMeme = {
   selectedImgId: 1,
   selectedLineIdx: 0,
   lines: [
-    { txt: ' ', fontSize: defaultFontSize, align: 'center', color: 'red', outline: 'black', yPos: yStart },
-    { txt: ' ', fontSize: defaultFontSize, align: 'center', color: 'blue', outline: 'red', yPos: yStart + 100 },
+    {
+      txt: ' ',
+      fontSize: defaultFontSize,
+      align: 'center',
+      color: 'red',
+      outline: 'black',
+      yPos: yStart,
+      fontFamily: ' Impact',
+    },
+    // {
+    //   txt: ' ',
+    //   fontSize: defaultFontSize,
+    //   align: 'center',
+    //   color: 'blue',
+    //   outline: 'red',
+    //   yPos: yStart + 100,
+    //   fontFamily: ' Impact',
+    // },
   ],
 };
 function init() {
@@ -102,11 +118,11 @@ function onChnageTextInput(textInput) {
 }
 
 function drawText(line) {
-  const { outline, align, txt, yPos, color, fontSize } = line;
+  const { outline, align, txt, yPos, color, fontSize, fontFamily } = line;
   gCtx.lineWidth = 2;
-  gCtx.strokeStyle = color;
-  gCtx.fillStyle = outline;
-  gCtx.font = fontSize + 'px' + ' Arial';
+  gCtx.strokeStyle = outline;
+  gCtx.fillStyle = color;
+  gCtx.font = fontSize + 'px ' + fontFamily;
   gCtx.textAlign = align;
   gCtx.fillText(txt, 250, yPos);
   gCtx.strokeText(txt, 250, yPos);
@@ -118,6 +134,9 @@ function changeLine() {
   } else {
     gMeme.selectedLineIdx = gMeme.selectedLineIdx + 1;
   }
+  console.log('gMeme.selectedLineIdx:', gMeme.selectedLineIdx);
+  updateLineDisplay();
+  console.log('gMeme.selectedLineIdx:', gMeme.selectedLineIdx);
 }
 
 function addLine() {
@@ -129,12 +148,13 @@ function addLine() {
     color: 'black',
     outline: 'red',
     yPos: lastLine.yPos + 100,
+    fontFamily: ' Impact',
   });
   gMeme.selectedLineIdx = gMeme.lines.length - 1;
 }
 function increaseFont() {
   const line = gMeme.lines[gMeme.selectedLineIdx];
-  if (line.fontSize >= 200 ) return;
+  if (line.fontSize >= 200) return;
   if (defaultFontSize >= 200) return;
   line.fontSize += 10;
   defaultFontSize += 10;
@@ -148,3 +168,43 @@ function decreaseFont() {
   defaultFontSize -= 10;
   resetDraw();
 }
+function setColorFill(inputColor) {
+  const line = gMeme.lines[gMeme.selectedLineIdx];
+  line.color = inputColor;
+  resetDraw();
+}
+function setColorOutline(inputColor) {
+  const line = gMeme.lines[gMeme.selectedLineIdx];
+  line.outline = inputColor;
+  resetDraw();
+}
+
+function textAlign(pos) {
+  const line = gMeme.lines[gMeme.selectedLineIdx];
+  line.align = pos;
+  resetDraw();
+}
+
+function fontStayle(font) {
+  gMeme.lines[gMeme.selectedLineIdx].fontFamily = font;
+  resetDraw();
+}
+
+function cleanText() {
+  gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+  resetDraw();
+}
+// var countClick = 0;
+// function updateLineDisplay() {
+//   if (countClick === 0) {
+//     countClick++;
+//     gMeme.lines[gMeme.selectedLineIdx]++;
+//     document.querySelector('.show-line-number span').innerText = 0;
+//   }
+//   if ((gMeme.lines.length -1) === 1) {
+//     gMeme.selectedLineIdx = 0;
+//     document.querySelector('.show-line-number span').innerText = 0;
+//   } else {
+//     document.querySelector('.show-line-number span').innerText = gMeme.selectedLineIdx;
+//   }
+// }

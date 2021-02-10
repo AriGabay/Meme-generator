@@ -35,25 +35,26 @@
                 <button type="button" class="button-generator select-row-txt"><img
                         src="img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png"
                         onclick="changeLine()"></button>
+                        <div class="show-line-number">Line: <span>0</span></div>
                 <button type="button" class="button-generator button-plus" onclick="addLine()"><img
                         src="img/ICONS/add.png"></button>
-                <button type="button" class="button-generator button-remove"><img src="img/ICONS/trash.png"></button>
+                <button type="button" class="button-generator button-remove" onclick="cleanText()"><img src="img/ICONS/trash.png"></button>
                 <button type="button" class="button-generator font-size-plus" onclick="increaseFont()"><img
                         src="img/ICONS/increase font - icon.png"></button>
                 <button type="button" class="button-generator font-size-minus" onclick="decreaseFont()"><img
                         src="img/ICONS/decrease font - icon.png"></button>
-                <button type="button" class="button-generator left-to-right"><img
+                <button type="button" class="button-generator left-to-right" onclick="textAlign('right')"><img
                         src="img/ICONS/align-to-left.png"></button>
-                <button type="button" class="button-generator center-txt"><img
+                <button type="button" class="button-generator center-txt" onclick="textAlign('center')"><img
                         src="img/ICONS/center-text-alignment.png"></button>
-                <button type="button" class="button-generator right-to-left"><img
-                        src="img/ICONS/align-to-left.png"></button>
-                <select class="select-impact">
-                    <option>aa</option>
-                    <option>bb</option>
+                <button type="button" class="button-generator right-to-left" onclick="textAlign('left')"><img
+                        src="img/ICONS/align-to-right.png"></button>
+                <select class="select-impact" onchange="fontStayle(this.value)">
+                    <option value=" Impact">Impact</option>
+                    <option value=" Ariel">Ariel</option>
                 </select>
-                <input type="color" name="fill-txt" class="fill-txt">
-                <input type="color" name="outline-color" class="outline-color-txt">
+                <input type="color" name="fill-txt" class="fill-txt" onchange="setColorFill(this.value)">
+                <input type="color" name="outline-color" class="outline-color-txt" onchange="setColorOutline(this.value)">
             </div>
         </div>
     </main>
