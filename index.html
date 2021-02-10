@@ -30,7 +30,7 @@
                 <canvas id="my-canvas" width="500" height="500"></canvas>
             </div>
             <div class="actions-on-meme grid">
-                <input type="txt" placeholder="Input Text" name="input-txt" id="input-txt">
+                <input type="txt" placeholder="Input Text" name="input-txt" id="input-txt" onchange="drawText(this.value)">
                 <button type="button" class="button-generator select-row-txt"><img
                         src="img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png"></button>
                 <button type="button" class="button-generator button-plus"><img src="img/ICONS/add.png"></button>
@@ -49,8 +49,8 @@
                     <option>aa</option>
                     <option>bb</option>
                 </select>
-                <input type="color" class="fill-txt">
-                <input type="color" class="outline-color-txt">
+                <input type="color" name="fill-txt" class="fill-txt">
+                <input type="color" name="outline-color" class="outline-color-txt">
             </div>
         </div>
     </main>

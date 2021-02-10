@@ -38,7 +38,11 @@ var gImgs = [
     keywords: ['feeling', 'funy'],
   },
 ];
-var gMeme;
+var gMeme= ({
+    selectedImgId: 1,
+    selectedLineIdx: 1,
+    lines: [{ txt: 'I never eat Falafel', size: 20, align: 'left', color: 'red' }],
+  });
 
 function init() {
   gCanvas = document.querySelector('#my-canvas');
@@ -50,14 +54,6 @@ function renderGallery() {
   console.log('strHtml:', strHtml);
   let elGallery = document.querySelector('.gallery');
   elGallery.innerHTML = strHtml;
-}
-
-function eddingMeme() {
-  return (gMeme = {
-    selectedImgId: 1,
-    selectedLineIdx: 1,
-    lines: [{ txt: 'I never eat Falafel', size: 20, align: 'left', color: 'red' }],
-  });
 }
 
 function getPicGallery() {
@@ -82,4 +78,14 @@ function toggleMemsGenerator() {
   elMainContainer.classList.remove('display-hide');
   let elGallery = document.querySelector('.gallery');
   elGallery.classList.add('display-hide');
+}
+function drawText(text, x=250, y=50) {
+    console.log(text)
+    gCtx.lineWidth = 2
+    gCtx.strokeStyle = document.querySelector('input.fill-txt').value
+    gCtx.fillStyle = document.querySelector('input.outline-color-txt').value
+    gCtx.font = '40px Arial'
+    gCtx.textAlign = 'center'
+    gCtx.fillText(text, x, y)
+    gCtx.strokeText(text, x, y)
 }
