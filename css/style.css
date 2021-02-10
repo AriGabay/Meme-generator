@@ -1,0 +1,135 @@
+html {
+    margin: 0px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+nav {
+    background-color: aqua;
+    margin-bottom: 2rem;
+}
+
+
+.space-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul li {
+    margin-inline-end: 35px;
+}
+
+.pic-gallery img {
+    width: 12rem;
+    height: 12rem;
+    margin-inline-end: 5px;
+}
+
+.gallery {
+    width: 100%;
+    flex-wrap: wrap;
+    /* display: none; */
+}
+
+#my-canvas {
+    background-color: antiquewhite;
+}
+
+.memes-generator .canvas-container {
+    width: 55%;
+    height: 100%;
+}
+
+.memes-generator .actions-on-meme {
+    width: 500px;
+    height: 500px;
+}
+
+.grid {
+    display: grid;
+    width: 50%;
+    height: 50%;
+    background-color: lightgreen;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 20% 20% 20% 20%;
+    grid-gap: 10px;
+    grid-template-areas:
+    " input-txt input-txt input-txt input-txt input-txt"
+    " . select-row-txt button-plus button-remove . "
+    " font-size-plus font-size-minus left-to-right center-txt right-to-left "
+    " select-impcat select-impcat select-impcat fill-txt outline-color-txt "
+}
+
+#input-txt {
+    grid-area: input-txt;
+}
+
+.select-row-txt {
+    grid-area: select-row-txt;
+}
+
+.button-plus {
+    grid-area: button-plus;
+}
+
+.button-remove {
+    grid-area: button-remove;
+}
+
+.font-size-plus {
+    grid-area: font-size-plus;
+}
+
+.font-size-minus {
+    grid-area: font-size-minus;
+}
+
+.left-to-right {
+    grid-area: left-to-right;
+}
+
+.center-txt {
+    grid-area: center-txt;
+}
+
+.right-to-left {
+    grid-area: right-to-left;
+}
+
+.select-impact {
+    grid-area: select-impcat;
+}
+
+.fill-txt {
+    grid-area: fill-txt;
+}
+
+.outline-color-txt {
+    grid-area: outline-color-txt;
+}
+
+.actions-on-meme input {
+    height: auto;
+    width: auto;
+}
+
+.actions-on-meme :nth-child(1) {
+    border-radius: 20px;
+}
+
+.actions-on-meme img {
+    width: 100%;
+    height: 100%;
+}
+
+.button-generator {
+    border-radius: 20px;
+    cursor: pointer;
+}
+.display-hide{
+    display: none;
+
+}

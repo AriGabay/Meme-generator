@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="init()">
+    <header>
+        <nav class="space-flex">
+            <div class="nav-logo ">logo</div>
+            <div class="button space-flex">
+                <ul class="space-flex">
+                    <li>Gallery</li>
+                    <li>Memes</li>
+                    <li>About</li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="main-container space-flex">
+        <div class="gallery space-flex">
+        </div>
+        <div class="memes-generator space-flex display-hide">
+            <div class="canvas-container">
+                <canvas id="my-canvas" width="500" height="500"></canvas>
+            </div>
+            <div class="actions-on-meme grid">
+                <input type="txt" placeholder="Input Text" name="input-txt" id="input-txt">
+                <button type="button" class="button-generator select-row-txt"><img
+                        src="img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png"></button>
+                <button type="button" class="button-generator button-plus"><img src="img/ICONS/add.png"></button>
+                <button type="button" class="button-generator button-remove"><img src="img/ICONS/trash.png"></button>
+                <button type="button" class="button-generator font-size-plus"><img
+                        src="img/ICONS/increase font - icon.png"></button>
+                <button type="button" class="button-generator font-size-minus"><img
+                        src="img/ICONS/decrease font - icon.png"></button>
+                <button type="button" class="button-generator left-to-right"><img
+                        src="img/ICONS/align-to-left.png"></button>
+                <button type="button" class="button-generator center-txt"><img
+                        src="img/ICONS/center-text-alignment.png"></button>
+                <button type="button" class="button-generator right-to-left"><img
+                        src="img/ICONS/align-to-left.png"></button>
+                <select class="select-impact">
+                    <option>aa</option>
+                    <option>bb</option>
+                </select>
+                <input type="color" class="fill-txt">
+                <input type="color" class="outline-color-txt">
+            </div>
+        </div>
+    </main>
+    <script src="js/controller.js"></script>
+    <script src="js/services.js"></script>
+</body>
+
+</html>
