@@ -218,7 +218,7 @@ function onClickLinkMems() {
   if (isHideMemesGen) elMemesGen.classList.remove('display-hide');
 }
 function downloadImg(elLink) {
-  var imgContent = gElCanvas.toDataURL('image/jpeg')
+  var imgContent = gCanvas.toDataURL('image/jpeg')
   elLink.href = imgContent
 }
 

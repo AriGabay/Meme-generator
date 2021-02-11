@@ -93,8 +93,7 @@
                     <input type="color" name="fill-txt" onchange="onSetColorFill(this.value)">
                 </div>
                 <div class="outline-color-txt">
-                    <input type="color" name="outline-color"
-                        onchange="onSetColorOutline(this.value)">
+                    <input type="color" name="outline-color" onchange="onSetColorOutline(this.value)">
                 </div>
                 <div class="btn-up">
                     <button class="button-generator" onclick="onMoveLine(true)">
@@ -107,8 +106,9 @@
                     </button>
                 </div>
                 <div class="btn-form-area">
-                    <button class="btn-form" onclick="downloadImg(this)" download="my-img.jpg">
-                        Download
+                    <a href="#" id="downloader" class="btn-form" onclick="downloadImg(this)"
+                        download="image.png">Download!</a>
+                    <!-- <canvas id="canvas"></canvas> -->
                     </button>
                 </div>
                 <form class="submit-form" action="" method="POST" enctype="multipart/form-data"

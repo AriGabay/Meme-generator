@@ -10,7 +10,6 @@ function uploadImg(elForm, ev) {
   // A function to be called if request succeeds
   function onSuccess(uploadedImgUrl) {
     uploadedImgUrl = encodeURIComponent(uploadedImgUrl);
-    console.log('uploadedImgUrl:', uploadedImgUrl);
     const shareEl = document.querySelector('.share-container');
     shareEl.classList.add('share-grid');
     shareEl.innerHTML = `

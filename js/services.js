@@ -63,11 +63,8 @@ function setColorOutline(inputColor) {
   line.outline = inputColor;
 }
 function textAlign(pos) {
-  console.log('pos:', pos);
   const line = gMeme.lines[gMeme.selectedLineIdx];
-  console.log('line.align :', line.align);
   line.align = pos;
-  console.log('line.align :', line.align);
 }
 function changeFontFamily(font) {
   gMeme.lines[gMeme.selectedLineIdx].fontFamily = font;
@@ -87,7 +84,6 @@ function moveLine(diff) {
   }
   if (diff) {
     if (gMeme.lines[gMeme.selectedLineIdx].y - gMeme.lines[gMeme.selectedLineIdx].fontSize === 0) return;
-    console.log('hiiii');
     gMeme.lines[gMeme.selectedLineIdx].yPos -= 10;
     resetDraw();
   }
