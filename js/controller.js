@@ -194,17 +194,18 @@ function cleanText() {
   gMeme.lines.splice(gMeme.selectedLineIdx, 1);
   resetDraw();
 }
-// var countClick = 0;
-// function updateLineDisplay() {
-//   if (countClick === 0) {
-//     countClick++;
-//     gMeme.lines[gMeme.selectedLineIdx]++;
-//     document.querySelector('.show-line-number span').innerText = 0;
-//   }
-//   if ((gMeme.lines.length -1) === 1) {
-//     gMeme.selectedLineIdx = 0;
-//     document.querySelector('.show-line-number span').innerText = 0;
-//   } else {
-//     document.querySelector('.show-line-number span').innerText = gMeme.selectedLineIdx;
-//   }
-// }
+
+var countClick = 0;
+function updateLineDisplay() {
+  // if (countClick === 0) {
+  //   countClick++;
+  //   gMeme.lines[gMeme.selectedLineIdx]++;
+  //   document.querySelector('.show-line-number span').innerText = 0;
+  // }
+  // if ((gMeme.lines.length -1) === 1) {
+  //   gMeme.selectedLineIdx = 0;
+  //   document.querySelector('.show-line-number span').innerText = 0;
+  // } else {
+    document.querySelector('.show-line-number span').innerText = gMeme.selectedLineIdx;
+  // }
+}
