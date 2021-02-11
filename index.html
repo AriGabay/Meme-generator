@@ -15,8 +15,8 @@
             <div class="nav-logo ">logo</div>
             <div class="button space-flex">
                 <ul class="space-flex">
-                    <li>Gallery</li>
-                    <li>Memes</li>
+                    <li onclick="onClickLinkGallery()">Gallery</li>
+                    <li onclick="onClickLinkMems()">Memes</li>
                     <li>About</li>
                 </ul>
             </div>
@@ -34,27 +34,31 @@
                     onchange="onChnageTextInput(this.value)">
                 <button type="button" class="button-generator select-row-txt"><img
                         src="img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png"
-                        onclick="changeLine()"></button>
-                        <div class="show-line-number">Line: <span>0</span></div>
-                <button type="button" class="button-generator button-plus" onclick="addLine()"><img
+                        onclick="onChangeLine()"></button>
+                <div class="show-line-number">Line: <span>0</span></div>
+                <button type="button" class="button-generator button-plus" onclick="onAddLine()"><img
                         src="img/ICONS/add.png"></button>
-                <button type="button" class="button-generator button-remove" onclick="cleanText()"><img src="img/ICONS/trash.png"></button>
-                <button type="button" class="button-generator font-size-plus" onclick="increaseFont()"><img
+                <button type="button" class="button-generator button-remove" onclick="onCleanText()"><img
+                        src="img/ICONS/trash.png"></button>
+                <button type="button" class="button-generator font-size-plus" onclick="onIncreaseFont()"><img
                         src="img/ICONS/increase font - icon.png"></button>
-                <button type="button" class="button-generator font-size-minus" onclick="decreaseFont()"><img
+                <button type="button" class="button-generator font-size-minus" onclick="onDecreaseFont()"><img
                         src="img/ICONS/decrease font - icon.png"></button>
-                <button type="button" class="button-generator left-to-right" onclick="textAlign('right')"><img
+                <button type="button" class="button-generator left-to-right" onclick="onTextAlign('right')"><img
                         src="img/ICONS/align-to-left.png"></button>
-                <button type="button" class="button-generator center-txt" onclick="textAlign('center')"><img
+                <button type="button" class="button-generator center-txt" onclick="onTextAlign('center')"><img
                         src="img/ICONS/center-text-alignment.png"></button>
-                <button type="button" class="button-generator right-to-left" onclick="textAlign('left')"><img
+                <button type="button" class="button-generator right-to-left" onclick="onTextAlign('left')"><img
                         src="img/ICONS/align-to-right.png"></button>
-                <select class="select-impact" onchange="fontStayle(this.value)">
-                    <option value=" Impact">Impact</option>
+                <select class="select-impact" onchange="onChangeFontFamily(this.value)">
+                    <option value="Impact">Impact</option>
                     <option value=" Ariel">Ariel</option>
                 </select>
-                <input type="color" name="fill-txt" class="fill-txt" onchange="setColorFill(this.value)">
-                <input type="color" name="outline-color" class="outline-color-txt" onchange="setColorOutline(this.value)">
+                <input type="color" name="fill-txt" class="fill-txt" onchange="onSetColorFill(this.value)">
+                <input type="color" name="outline-color" class="outline-color-txt"
+                    onchange="onSetColorOutline(this.value)">
+                <button onclick="onMoveLine(true)"><img class="move-up" src="img/ICONS/move-up.png"></button>
+                <button onclick="onMoveLine(false)"><img class="move-down" src="img/ICONS/move-down.png"></button>
             </div>
         </div>
     </main>

@@ -1,70 +1,5 @@
 'use-strict';
-var gCanvas;
-var gCtx;
-var gImgs = [
-  {
-    id: 1,
-    url: 'img/1.jpg',
-    keywords: ['trump'],
-  },
-  {
-    id: 2,
-    url: 'img/2.jpg',
-    keywords: ['animals'],
-  },
-  {
-    id: 3,
-    url: 'img/3.jpg',
-    keywords: ['animals'],
-  },
-  {
-    id: 4,
-    url: 'img/4.jpg',
-    keywords: ['animals'],
-  },
-  {
-    id: 5,
-    url: 'img/5.jpg',
-    keywords: ['feeling', 'angry'],
-  },
-  {
-    id: 6,
-    url: 'img/6.jpg',
-    keywords: ['feeling'],
-  },
-  {
-    id: 7,
-    url: 'img/7.jpg',
-    keywords: ['feeling', 'funy'],
-  },
-];
-let defaultFontSize = 60;
-var yStart = 80;
-let img;
-var gMeme = {
-  selectedImgId: 1,
-  selectedLineIdx: 0,
-  lines: [
-    {
-      txt: ' ',
-      fontSize: defaultFontSize,
-      align: 'center',
-      color: 'red',
-      outline: 'black',
-      yPos: yStart,
-      fontFamily: ' Impact',
-    },
-    // {
-    //   txt: ' ',
-    //   fontSize: defaultFontSize,
-    //   align: 'center',
-    //   color: 'blue',
-    //   outline: 'red',
-    //   yPos: yStart + 100,
-    //   fontFamily: ' Impact',
-    // },
-  ],
-};
+var img;
 function init() {
   gCanvas = document.querySelector('#my-canvas');
   gCtx = gCanvas.getContext('2d');
@@ -113,7 +48,7 @@ function resetDraw() {
 
 function onChnageTextInput(textInput) {
   if (!textInput) return;
-  gMeme.lines[gMeme.selectedLineIdx].txt = textInput;
+  chnageTextInput(textInput);
   resetDraw();
 }
 
@@ -122,90 +57,75 @@ function drawText(line) {
   gCtx.lineWidth = 2;
   gCtx.strokeStyle = outline;
   gCtx.fillStyle = color;
+  console.log('fontSize', fontSize + 'px ' + fontFamily);
   gCtx.font = fontSize + 'px ' + fontFamily;
   gCtx.textAlign = align;
-  gCtx.fillText(txt, 250, yPos);
-  gCtx.strokeText(txt, 250, yPos);
+  gCtx.fillText(txt, gCanvas.width / 2, yPos);
+  gCtx.strokeText(txt, gCanvas.width / 2, yPos);
 }
 
-function changeLine() {
-  if (gMeme.selectedLineIdx >= gMeme.lines.length - 1) {
-    gMeme.selectedLineIdx = 0;
-  } else {
-    gMeme.selectedLineIdx = gMeme.selectedLineIdx + 1;
-  }
-  console.log('gMeme.selectedLineIdx:', gMeme.selectedLineIdx);
+function onChangeLine() {
+  changeLine();
   updateLineDisplay();
-  console.log('gMeme.selectedLineIdx:', gMeme.selectedLineIdx);
 }
 
-function addLine() {
-  const [lastLine] = gMeme.lines.slice(-1);
-  gMeme.lines.push({
-    txt: '',
-    fontSize: defaultFontSize,
-    align: 'center',
-    color: 'black',
-    outline: 'red',
-    yPos: lastLine.yPos + 100,
-    fontFamily: ' Impact',
-  });
-  gMeme.selectedLineIdx = gMeme.lines.length - 1;
+function onAddLine() {
+  addLine();
 }
-function increaseFont() {
-  const line = gMeme.lines[gMeme.selectedLineIdx];
-  if (line.fontSize >= 200) return;
-  if (defaultFontSize >= 200) return;
-  line.fontSize += 10;
-  defaultFontSize += 10;
+function onIncreaseFont() {
+  increaseFont();
   resetDraw();
 }
-function decreaseFont() {
-  const line = gMeme.lines[gMeme.selectedLineIdx];
-  if (line.fontSize <= 10) return;
-  if (defaultFontSize <= 10) return;
-  line.fontSize -= 10;
-  defaultFontSize -= 10;
+function onDecreaseFont() {
+  decreaseFont();
   resetDraw();
 }
-function setColorFill(inputColor) {
-  const line = gMeme.lines[gMeme.selectedLineIdx];
-  line.color = inputColor;
+function onSetColorFill(inputColor) {
+  setColorFill(inputColor);
   resetDraw();
 }
-function setColorOutline(inputColor) {
-  const line = gMeme.lines[gMeme.selectedLineIdx];
-  line.outline = inputColor;
+function onSetColorOutline(inputColor) {
+  setColorOutline(inputColor);
   resetDraw();
 }
 
-function textAlign(pos) {
-  const line = gMeme.lines[gMeme.selectedLineIdx];
-  line.align = pos;
+function onTextAlign(pos) {
+  console.log('pos:', pos);
+  textAlign(pos);
   resetDraw();
 }
 
-function fontStayle(font) {
-  gMeme.lines[gMeme.selectedLineIdx].fontFamily = font;
+function onChangeFontFamily(font) {
+  changeFontFamily(font);
   resetDraw();
 }
 
-function cleanText() {
-  gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+function onCleanText() {
+  cleanText();
   resetDraw();
 }
+function onMoveLine(diff) {
+  moveLine(diff);
+}
 
-var countClick = 0;
 function updateLineDisplay() {
-  // if (countClick === 0) {
-  //   countClick++;
-  //   gMeme.lines[gMeme.selectedLineIdx]++;
-  //   document.querySelector('.show-line-number span').innerText = 0;
-  // }
-  // if ((gMeme.lines.length -1) === 1) {
-  //   gMeme.selectedLineIdx = 0;
-  //   document.querySelector('.show-line-number span').innerText = 0;
-  // } else {
-    document.querySelector('.show-line-number span').innerText = gMeme.selectedLineIdx;
-  // }
+  document.querySelector('.show-line-number span').innerText = gMeme.selectedLineIdx;
+}
+function onClickLinkGallery() {
+  // debugger
+  let elMemesGen = document.querySelector('.memes-generator');
+  let isHideMainContainer = elMemesGen.classList.contains('display-hide');
+  let elGallery = document.querySelector('.gallery');
+  let isHideGallery = elGallery.classList.contains('display-hide');
+  if (!isHideMainContainer) elMemesGen.classList.add('display-hide');
+  if (isHideGallery) elGallery.classList.remove('display-hide');
+}
+function onClickLinkMems() {
+  // debugger
+  let elMemesGen = document.querySelector('.memes-generator');
+  let elGallery = document.querySelector('.gallery');
+  let isHideMemesGen = elMemesGen.classList.contains('display-hide');
+  let isHideGallery = elGallery.classList.contains('display-hide');
+  if (!isHideGallery) elGallery.classList.add('display-hide');
+  if (isHideMemesGen) elMemesGen.classList.remove('display-hide');
 }
