@@ -2,6 +2,7 @@
 var gCanvas;
 var gCtx;
 var yStart = 80;
+let cursorInterval;
 let defaultFontSize = 60;
 var gMeme = {
   selectedImgId: 1,
@@ -89,3 +90,31 @@ function moveLine(diff) {
   }
 }
 
+function toggleCursor() {
+  const currentLine = gMeme.lines[gMeme.selectedLineIdx];
+  if (currentLine.txt.endsWith('|')) {
+    currentLine.txt = currentLine.txt.slice(0, currentLine.txt.length - 1);
+  } else {
+    currentLine.txt += '|';
+  }
+  resetDraw();
+}
+
+function removeCursor() {
+  const currentLine = gMeme.lines[gMeme.selectedLineIdx];
+  if (currentLine.txt.endsWith('|')) {
+    currentLine.txt = currentLine.txt.slice(0, currentLine.txt.length - 1);
+  }
+  resetDraw();
+}
+
+function startCursorInterval() {
+  cursorInterval = setInterval(() => {
+    toggleCursor();
+  }, 500);
+}
+
+function stopCursorInterval() {
+  clearInterval(cursorInterval)
+  removeCursor();
+}

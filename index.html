@@ -23,9 +23,21 @@
                         <li><a href="#about-id-for-href">About</a></li>
                     </ul>
                 </div>
+                <div class="mobile-menu-button" onclick="toggleMenu()">
+                    <img src="img/ICONS/menu.svg" alt="menu">
+                </div>
             </nav>
         </div>
     </header>
+    <div class="mobile-menu display-hide">
+        <div class="mobile-menu-list">
+            <div class="mobile-menu-item" onclick="withMenuToggle(onClickLinkGallery)">Gallery</div>
+            <hr>
+            <div class="mobile-menu-item" onclick="withMenuToggle(onClickLinkMems)">Memes</div>
+            <hr>
+            <div class="mobile-menu-item"><a href="#about-id-for-href" onclick="withMenuToggle()">About</a></div>
+        </div>
+    </div>
     <main class="main-container ">
         <div class="gallery">
         </div>
@@ -36,7 +48,7 @@
             <div class="actions-on-meme grid">
                 <div id="input-txt">
                     <input type="txt" placeholder="Input Text" name="input-txt"
-                        onchange="onChnageTextInput(this.value)" />
+                        onchange="onChnageTextInput(this.value)" oninput="onChnageTextInput(this.value)" onfocus="startCursor()" onblur="endCursor()" />
                 </div>
                 <div class="select-row-txt">
                     <button type="button" class="button-generator"><img
@@ -108,7 +120,6 @@
                 <div class="btn-form-area">
                     <a href="#" id="downloader" class="btn-form" onclick="downloadImg(this)"
                         download="image.png">Download!</a>
-                    <!-- <canvas id="canvas"></canvas> -->
                     </button>
                 </div>
                 <form class="submit-form" action="" method="POST" enctype="multipart/form-data"
@@ -122,7 +133,7 @@
     </main>
     <div class="main-about center-flex" id="about-id-for-href">
         <div class="all-about">
-            <div class="img-profile center-flex"><img src="img/img-about/Ari_Photo.jpeg"></div>
+            <div class="img-profile center-flex"><img src="img/img-about/ari.jpeg"></div>
             <div class="about-txt">
                 <h3>Ari Gabay</h3>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab cumque in fugit repellat dignissimos at

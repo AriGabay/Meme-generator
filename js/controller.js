@@ -46,57 +46,21 @@ var gImgs = [
     url: 'img/9.jpg',
     keywords: ['feeling', 'funy'],
   },
-  // {
-  //   id: 10,
-  //   url: 'img/10.jpg',
-  //   keywords: ['feeling', 'funy'],
-  // },
-  // {
-  //   id: 11,
-  //   url: 'img/11.jpg',
-  //   keywords: ['feeling', 'funy'],
-  // },
-  // {
-  //   id: 12,
-  //   url: 'img/12.jpg',
-  //   keywords: ['tv', ],
-  // },
-  // {
-  //   id: 13,
-  //   url: 'img/13.jpg',
-  //   keywords: ['movies', ],
-  // },
-  // {
-  //   id: 14,
-  //   url: 'img/14.jpg',
-  //   keywords: ['movies', ],
-  // },
-  // {
-  //   id: 15,
-  //   url: 'img/15.jpg',
-  //   keywords: ['movies', ],
-  // },
-  // {
-  //   id: 16,
-  //   url: 'img/16.jpg',
-  //   keywords: ['movies', ],
-  // },
-  // {
-  //   id: 17,
-  //   url: 'img/17.jpg',
-  //   keywords: ['putin', ],
-  // },
-  // {
-  //   id: 18,
-  //   url: 'img/18.jpg',
-  //   keywords: ['movies', ],
-  // },
 ];
 function init() {
   gCanvas = document.querySelector('#my-canvas');
   gCtx = gCanvas.getContext('2d');
   renderGallery();
 }
+
+function startCursor() {
+  startCursorInterval();
+}
+
+function endCursor() {
+  stopCursorInterval();
+}
+
 function renderGallery() {
   let strHtml = getPicGallery();
   let elGallery = document.querySelector('.gallery');
@@ -218,9 +182,22 @@ function onClickLinkMems() {
   if (isHideMemesGen) elMemesGen.classList.remove('display-hide');
 }
 function downloadImg(elLink) {
-  var imgContent = gCanvas.toDataURL('image/jpeg')
-  elLink.href = imgContent
+  var imgContent = gCanvas.toDataURL('image/jpeg');
+  elLink.href = imgContent;
 }
 
+function toggleMenu() {
+  const elMenu = document.querySelector('.mobile-menu');
+  if (elMenu.classList.contains('display-hide')) {
+    elMenu.classList.remove('display-hide');
+  }else {
+    elMenu.classList.add('display-hide');
+  }
+}
 
-
+function withMenuToggle(func) {
+  toggleMenu();
+  if (func) {
+    func();
+  }
+}
