@@ -7,25 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>index</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 <body onload="init()">
     <header>
-        <nav class="space-flex">
-            <div class="nav-logo ">logo</div>
-            <div class="button space-flex">
-                <ul class="space-flex">
-                    <li onclick="onClickLinkGallery()">Gallery</li>
-                    <li onclick="onClickLinkMems()">Memes</li>
-                    <li>About</li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <main class="main-container space-flex">
-        <div class="gallery space-flex">
+        <div class="nav-container">
+            <nav class="space-flex main-nav center-flex">
+                <div class="nav-logo"><img src="img/LOGO.png"></div>
+                <div class="button space-flex">
+                    <ul class="space-flex nav-ul">
+                        <li onclick="onClickLinkGallery()">Gallery</li>
+                        <li onclick="onClickLinkMems()">Memes</li>
+                        <li><a href="#about-id-for-href">About</a></li>
+                    </ul>
+                </div>
+            </nav>
         </div>
-        <div class="memes-generator space-flex display-hide">
+    </header>
+    <main class="main-container ">
+        <div class="gallery">
+        </div>
+        <div class="memes-generator space-evenly-flex display-hide">
             <div class="canvas-container">
                 <canvas id="my-canvas" width="500" height="500"></canvas>
             </div>
@@ -57,11 +61,35 @@
                 <input type="color" name="fill-txt" class="fill-txt" onchange="onSetColorFill(this.value)">
                 <input type="color" name="outline-color" class="outline-color-txt"
                     onchange="onSetColorOutline(this.value)">
-                <button onclick="onMoveLine(true)"><img class="move-up" src="img/ICONS/move-up.png"></button>
-                <button onclick="onMoveLine(false)"><img class="move-down" src="img/ICONS/move-down.png"></button>
+                <button class="button-generator" onclick="onMoveLine(true)"><img class="move-up" src="img/ICONS/move-up.png"></button>
+                <button class="button-generator" onclick="onMoveLine(false)"><img class="move-down" src="img/ICONS/move-down.png"></button>
             </div>
         </div>
     </main>
+    <div class="main-about center-flex" id="about-id-for-href">
+        <div class="all-about">
+            <div class="img-profile center-flex"><img src="img/img-about/Ari_Photo.jpeg"></div>
+            <div class="about-txt">
+                <h3>Ari Gabay</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab cumque in fugit repellat dignissimos at
+                    esse
+                    earum, ipsam ut quos?</p>
+                <div class="icons">
+                    <a href="https://www.linkedin.com/in/ari-gabay-215292175" class="icon-img linkedin"><img onclick="goFacebook()" src="img/ICONS/linkedin-logo.png"></a></a>
+                    <a href="https://www.facebook.com/arigabay" class="icon-img facebook"><img src="img/ICONS/facebook-logo.png"></a>
+                    <a href="https://github.com/AriGabay/" target="_blank" class="icon-img github"><img src="img/ICONS/github-logo.png"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="main-footer">
+        <div class="all-footer">
+            <div class="footer-txt center-flex">
+                <img src="img/LOGO.png">
+                <p>Lorem ipsum dolor sit amet consectetur.</p>
+            </div>
+        </div>
+    </footer>
     <script src="js/controller.js"></script>
     <script src="js/services.js"></script>
 </body>
