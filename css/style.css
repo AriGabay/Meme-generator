@@ -12,6 +12,7 @@ body {
 
 .nav-container {
     background-color: #FF7F00;
+    box-shadow: 10px 13px 42px -12px #FF7F00;
     width: 100%;
 }
 
@@ -49,7 +50,7 @@ nav {
     justify-content: flex-end;
 }
 
-.nav-ul li, .nam-ul li a li {
+.nav-ul li {
     width: 4.125rem;
     color: #FFFFFF;
     list-style-type: none;
@@ -58,10 +59,26 @@ nav {
     padding-right: 0.6875rem;
     border-right: 2px solid black;
     margin-inline-end: 16px;
+    text-decoration: none;
 }
-.nav-ul :hover{
+
+li:last-child a {
+    width: 4.125rem;
+    color: #FFFFFF;
+    list-style-type: none;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: capitalize;
+    padding-right: 0.6875rem;
+    border-right: 2px solid black;
+    margin-inline-end: 16px;
+    text-decoration: none;
+
+}
+
+.nav-ul :hover {
     cursor: pointer;
 }
+
 .nav-ul li:last-child {
     margin-inline-end: 0px;
     border-right: 0px;
@@ -71,6 +88,7 @@ nav {
     width: 100%;
     height: 100%;
     cursor: pointer;
+    border-radius: 60px;
 }
 
 .main-container {
@@ -109,17 +127,22 @@ nav {
     width: 50%;
     height: 50%;
     grid-template-columns: 20% 20% 20% 20% 20%;
-    grid-template-rows: 20% 20% 20% 20%;
+    grid-template-rows: 20% 20% 20% 20% 20%;
     grid-gap: 10px;
     grid-template-areas:
         " input-txt input-txt input-txt input-txt input-txt"
-        " show-line-number select-row-txt button-plus button-remove . "
+        " show-line-number submit-btn btn-up btn-down ."
+        " share-grid select-row-txt button-plus button-remove btn-form "
         " font-size-plus font-size-minus left-to-right center-txt right-to-left "
         " select-impcat select-impcat select-impcat fill-txt outline-color-txt "
 }
 
+
 #input-txt {
     grid-area: input-txt;
+}
+.share-grid{
+    grid-area: share-grid;
 }
 
 .select-row-txt {
@@ -170,23 +193,57 @@ nav {
     grid-area: outline-color-txt;
 }
 
-.actions-on-meme input {
-    height: auto;
-    width: auto;
+.btn-up {
+    grid-area: btn-up;
 }
 
+.btn-down {
+    grid-area: btn-down;
+}
+.submit-btn{
+    grid-area: submit-btn;
+}
+
+.actions-on-meme input {
+    height: 100%;
+    width: 100%;
+}
+
+#input-txt input {
+    font-size: 2rem;
+}
+
+.actions-on-meme input:hover {
+    outline: none;
+}
+/* 
 .actions-on-meme :nth-child(1) {
     border-radius: 20px;
+} */
+
+.actions-on-meme > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.submit-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .actions-on-meme img {
     width: 4rem;
     height: 4rem;
+    padding: 2px;
 }
 
 .button-generator {
     border-radius: 20px;
     cursor: pointer;
+    box-shadow: 10px 13px 42px -12px rgb(0 0 0);
 }
 
 .display-hide {
@@ -287,9 +344,29 @@ nav {
     margin: 78px 535px 73px 532px;
     width: 132px;
 }
+
 .show-line-number {
     grid-column: show-line-number;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.btn-form {
+    background: #FF7F00;
+    border: 1px solid #FFFFFF;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 0 5px;
+    user-select: none;
+    padding: 5px 5px;
+    border-radius: 3px;
+    text-decoration: none;
+  }
+
+.btn-form-area {
+    grid-area: btn-form;
+    height: 100%;
+    width: 100%;
 }

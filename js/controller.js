@@ -217,6 +217,10 @@ function onClickLinkMems() {
   if (!isHideGallery) elGallery.classList.add('display-hide');
   if (isHideMemesGen) elMemesGen.classList.remove('display-hide');
 }
-function goFacebook(){
-  location.href ='www.google.com';
+function downloadImg(elLink) {
+  var imgContent = gElCanvas.toDataURL('image/jpeg')
+  elLink.href = imgContent
 }
+
+
+

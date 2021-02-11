@@ -92,3 +92,4 @@ function moveLine(diff) {
     resetDraw();
   }
 }
+

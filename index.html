@@ -34,35 +34,89 @@
                 <canvas id="my-canvas" width="500" height="500"></canvas>
             </div>
             <div class="actions-on-meme grid">
-                <input type="txt" placeholder="Input Text" name="input-txt" id="input-txt"
-                    onchange="onChnageTextInput(this.value)">
-                <button type="button" class="button-generator select-row-txt"><img
-                        src="img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png"
-                        onclick="onChangeLine()"></button>
-                <div class="show-line-number">Line: <span>0</span></div>
-                <button type="button" class="button-generator button-plus" onclick="onAddLine()"><img
-                        src="img/ICONS/add.png"></button>
-                <button type="button" class="button-generator button-remove" onclick="onCleanText()"><img
-                        src="img/ICONS/trash.png"></button>
-                <button type="button" class="button-generator font-size-plus" onclick="onIncreaseFont()"><img
-                        src="img/ICONS/increase font - icon.png"></button>
-                <button type="button" class="button-generator font-size-minus" onclick="onDecreaseFont()"><img
-                        src="img/ICONS/decrease font - icon.png"></button>
-                <button type="button" class="button-generator left-to-right" onclick="onTextAlign('right')"><img
-                        src="img/ICONS/align-to-left.png"></button>
-                <button type="button" class="button-generator center-txt" onclick="onTextAlign('center')"><img
-                        src="img/ICONS/center-text-alignment.png"></button>
-                <button type="button" class="button-generator right-to-left" onclick="onTextAlign('left')"><img
-                        src="img/ICONS/align-to-right.png"></button>
-                <select class="select-impact" onchange="onChangeFontFamily(this.value)">
-                    <option value="Impact">Impact</option>
-                    <option value=" Ariel">Ariel</option>
-                </select>
-                <input type="color" name="fill-txt" class="fill-txt" onchange="onSetColorFill(this.value)">
-                <input type="color" name="outline-color" class="outline-color-txt"
-                    onchange="onSetColorOutline(this.value)">
-                <button class="button-generator" onclick="onMoveLine(true)"><img class="move-up" src="img/ICONS/move-up.png"></button>
-                <button class="button-generator" onclick="onMoveLine(false)"><img class="move-down" src="img/ICONS/move-down.png"></button>
+                <div id="input-txt">
+                    <input type="txt" placeholder="Input Text" name="input-txt"
+                        onchange="onChnageTextInput(this.value)" />
+                </div>
+                <div class="select-row-txt">
+                    <button type="button" class="button-generator"><img
+                            src="img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png"
+                            onclick="onChangeLine()">
+                    </button>
+                </div>
+
+                <div class="show-line-number">
+                    Line: <span>0</span>
+                </div>
+                <div class="button-plus">
+                    <button type="button" class="button-generator" onclick="onAddLine()">
+                        <img src="img/ICONS/add.png">
+                    </button>
+                </div>
+                <div class="button-remove">
+                    <button type="button" class="button-generator" onclick="onCleanText()">
+                        <img src="img/ICONS/trash.png">
+                    </button>
+                </div>
+                <div class="font-size-plus">
+                    <button type="button" class="button-generator" onclick="onIncreaseFont()">
+                        <img src="img/ICONS/increase font - icon.png">
+                    </button>
+                </div>
+                <div class="font-size-minus">
+                    <button type="button" class="button-generator" onclick="onDecreaseFont()">
+                        <img src="img/ICONS/decrease font - icon.png">
+                    </button>
+                </div>
+                <div class="left-to-right">
+                    <button type="button" class="button-generator" onclick="onTextAlign('right')">
+                        <img src="img/ICONS/align-to-left.png">
+                    </button>
+                </div>
+                <div class="center-txt">
+                    <button type="button" class="button-generator" onclick="onTextAlign('center')">
+                        <img src="img/ICONS/center-text-alignment.png">
+                    </button>
+                </div>
+                <div class="right-to-left"><button type="button" class="button-generator" onclick="onTextAlign('left')">
+                        <img src="img/ICONS/align-to-right.png">
+                    </button>
+                </div>
+                <div class="select-impact">
+                    <select onchange="onChangeFontFamily(this.value)">
+                        <option value="Impact">Impact</option>
+                        <option value=" Ariel">Ariel</option>
+                    </select>
+                </div>
+
+                <div class="fill-txt">
+                    <input type="color" name="fill-txt" onchange="onSetColorFill(this.value)">
+                </div>
+                <div class="outline-color-txt">
+                    <input type="color" name="outline-color"
+                        onchange="onSetColorOutline(this.value)">
+                </div>
+                <div class="btn-up">
+                    <button class="button-generator" onclick="onMoveLine(true)">
+                        <img class="move-up" src="img/ICONS/move-up.png">
+                    </button>
+                </div>
+                <div class="btn-down">
+                    <button class="button-generator" onclick="onMoveLine(false)">
+                        <img class="move-down" src="img/ICONS/move-down.png">
+                    </button>
+                </div>
+                <div class="btn-form-area">
+                    <button class="btn-form" onclick="downloadImg(this)" download="my-img.jpg">
+                        Download
+                    </button>
+                </div>
+                <form class="submit-form" action="" method="POST" enctype="multipart/form-data"
+                    onsubmit="uploadImg(this, event)">
+                    <input name="img" id="imgData" type="hidden" />
+                    <button class="submit-btn" type="submit">Publish</button>
+                </form>
+                <div class="share-container"></div>
             </div>
         </div>
     </main>
@@ -73,11 +127,15 @@
                 <h3>Ari Gabay</h3>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab cumque in fugit repellat dignissimos at
                     esse
-                    earum, ipsam ut quos?</p>
+                    earum, ipsam ut quos?
+                </p>
                 <div class="icons">
-                    <a href="https://www.linkedin.com/in/ari-gabay-215292175" class="icon-img linkedin"><img onclick="goFacebook()" src="img/ICONS/linkedin-logo.png"></a></a>
-                    <a href="https://www.facebook.com/arigabay" class="icon-img facebook"><img src="img/ICONS/facebook-logo.png"></a>
-                    <a href="https://github.com/AriGabay/" target="_blank" class="icon-img github"><img src="img/ICONS/github-logo.png"></a>
+                    <a href="https://www.linkedin.com/in/ari-gabay-215292175" class="icon-img linkedin"><img
+                            onclick="goFacebook()" src="img/ICONS/linkedin-logo.png"></a></a>
+                    <a href="https://www.facebook.com/arigabay" class="icon-img facebook"><img
+                            src="img/ICONS/facebook-logo.png"></a>
+                    <a href="https://github.com/AriGabay/" target="_blank" class="icon-img github"><img
+                            src="img/ICONS/github-logo.png"></a>
                 </div>
             </div>
         </div>
@@ -90,8 +148,9 @@
             </div>
         </div>
     </footer>
-    <script src="js/controller.js"></script>
+    <script src="js/upload-service.js"></script>
     <script src="js/services.js"></script>
+    <script src="js/controller.js"></script>
 </body>
 
 </html>
