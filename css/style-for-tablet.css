@@ -57,7 +57,7 @@
     height: calc((300px/9)*16);
   }
   .memes-generator.toggle-landscape{
-    height: 550px;
+    height: 900px;
   }
 
 }
