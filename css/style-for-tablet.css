@@ -1,0 +1,63 @@
+@media (max-width:1200px) {
+  #my-canvas {
+    width: 400px;
+    height: 400px;
+  }
+  /* .memes-generator{
+    height: 720px;
+  } */
+  .actions-on-meme input {
+    height: 50%;
+    width: 100%;
+  }
+
+  .actions-on-meme img {
+    width: 3rem;
+    height: 3rem;
+    padding: 2px;
+  }
+
+  .memes-generator .actions-on-meme {
+    width: 400px;
+    height: 400px;
+  }
+
+  #my-canvas {
+    padding-bottom: 0px;
+  }
+
+  .memes-generator {
+    flex-direction: column;
+    height: 720px;
+  }
+
+  .all-about {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .about-txt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .grid {
+    grid-template-areas:
+      " input-txt input-txt input-txt file-input file-input"
+      " show-line-number submit-btn btn-up btn-down . "
+      " share-grid select-row-txt button-plus button-remove btn-form "
+      " font-size-plus font-size-minus left-to-right center-txt right-to-left "
+      " select-orientation select-impcat select-impcat fill-txt outline-color-txt ";
+  }
+  .toggle-portrait #my-canvas {
+    width: 300px;
+    height: calc((300px/9)*16);
+  }
+  .memes-generator.toggle-landscape{
+    height: 550px;
+  }
+
+}

@@ -125,93 +125,14 @@ body {
     height: 500px;
 }
 
-.grid {
-    display: grid;
-    width: 50%;
-    height: 50%;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    grid-gap: 10px;
-    grid-template-areas:
-        " input-txt input-txt input-txt input-txt input-txt"
-        " show-line-number submit-btn btn-up btn-down ."
-        " share-grid select-row-txt button-plus button-remove btn-form "
-        " font-size-plus font-size-minus left-to-right center-txt right-to-left "
-        " select-impcat select-impcat select-impcat fill-txt outline-color-txt "
-}
-
-
-#input-txt {
-    grid-area: input-txt;
-}
-
-.share-grid {
-    grid-area: share-grid;
-}
-
-.select-row-txt {
-    grid-area: select-row-txt;
-}
-
-.button-plus {
-    grid-area: button-plus;
-}
-
-.button-remove {
-    grid-area: button-remove;
-}
-
-.font-size-plus {
-    grid-area: font-size-plus;
-}
-
-.font-size-minus {
-    grid-area: font-size-minus;
-}
-
-.left-to-right {
-    grid-area: left-to-right;
-}
-
-.center-txt {
-    grid-area: center-txt;
-}
-
-.right-to-left {
-    grid-area: right-to-left;
-}
-
-.select-impact {
-    grid-area: select-impcat;
-}
-
-.fill-txt {
-    grid-area: fill-txt;
-}
-
-.show-line-number {
-    grid-column: show-line-number;
-}
-
-.outline-color-txt {
-    grid-area: outline-color-txt;
-}
-
-.btn-up {
-    grid-area: btn-up;
-}
-
-.btn-down {
-    grid-area: btn-down;
-}
-
-.submit-btn {
-    grid-area: submit-btn;
-}
 
 .actions-on-meme input {
     height: 100%;
     width: 100%;
+}
+.file-input .file-input-btn {
+    white-space: pre-wrap;
+    max-height: 70px;
 }
 
 #input-txt input {
@@ -361,7 +282,6 @@ body {
 }
 
 .btn-form-area {
-    grid-area: btn-form;
     height: 100%;
     width: 100%;
 }
@@ -378,135 +298,11 @@ body {
 .mobile-menu {
     display: none;
 }
-
-@media (max-width:1200px) {
-    #my-canvas {
-        width: 400px;
-        height: 400px;
-    }
-
-    .actions-on-meme input {
-        height: 50%;
-        width: 50%;
-    }
-
-    .actions-on-meme img {
-        width: 3rem;
-        height: 3rem;
-        padding: 2px;
-    }
-
-    .memes-generator .actions-on-meme {
-        width: 400px;
-        height: 400px;
-    }
-
-    #my-canvas {
-        padding-bottom: 0px;
-    }
-
-    .memes-generator {
-        flex-direction: column;
-        height: 900px;
-    }
-
-    .all-about {
-        flex-direction: column;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .about-txt {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-
+.toggle-portrait #my-canvas {
+    width:400px ;
+    height: calc((400px/9)*16);
 }
-
-@media (max-width:720px) {
-    .gallery {
-        padding: 0 3.125rem 1rem 3.125rem;
-    }
-    
-    #my-canvas {
-        width: 325px;
-        height: 325px;
-    }
-
-    .actions-on-meme input {
-        height: 100%;
-        width: 100%;
-    }
-
-    .actions-on-meme img {
-        width: 2rem;
-        height: 2rem;
-        padding: 2px;
-    }
-
-    .memes-generator .actions-on-meme {
-        width: 325px;
-        height: 325px;
-    }
-
-    .grid {
-        display: grid;
-        width: 50%;
-        height: 50%;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(6, 1fr);
-        grid-gap: 10px;
-        grid-template-areas:
-            " input-txt input-txt input-txt input-txt"
-            " show-line-number submit-btn btn-up btn-down"
-            " share-grid select-row-txt btn-form ."
-            " left-to-right center-txt right-to-left outline-color-txt "
-            " select-impcat select-impcat select-impcat fill-txt"
-            " button-plus button-remove font-size-plus font-size-minus"
-    }
-
-    .nav-ul {
-        display: none;
-    }
-
-    .mobile-menu-button {
-        display: inline-block;
-        margin-right: 5px;
-    }
-
-    .mobile-menu {
-        background-color: #FF7F00;
-        display: inline-block;
-        position: fixed;
-        top: 36px;
-        right: 0;
-        padding: 8px 16px;
-        font-size: 1.25rem;
-    }
-
-    .mobile-menu-item {
-        color: black;
-        padding: 4px;
-    }
-
-    .mobile-menu-item a {
-        text-decoration: none;
-        color: black;
-    }
-
-    .mobile-menu.display-hide {
-        display: none;
-    }
-
-    .mobile-menu-list {
-        list-style: none;
-    }
-
-    .img-profile img {
-        margin-inline-end: 0;
-    }
-
+.toggle-landscape #my-canvas{
+    width: 750px;
+    height: calc((750px/16)*9);
 }

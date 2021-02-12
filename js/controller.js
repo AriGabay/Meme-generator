@@ -65,6 +65,7 @@ function renderGallery() {
   let strHtml = getPicGallery();
   let elGallery = document.querySelector('.gallery');
   elGallery.innerHTML = strHtml;
+  scrollToTop();
 }
 
 function getPicGallery() {
@@ -79,6 +80,7 @@ function toggleMemesGenerator(imgId) {
   elMainContainer.classList.remove('display-hide');
   let elGallery = document.querySelector('.gallery');
   elGallery.classList.add('display-hide');
+  scrollToTop();
   gMeme.selectedImgId = imgId;
   img = new Image();
   img.src = `img/${imgId}.jpg`;
@@ -172,6 +174,7 @@ function onClickLinkGallery() {
   let isHideGallery = elGallery.classList.contains('display-hide');
   if (!isHideMainContainer) elMemesGen.classList.add('display-hide');
   if (isHideGallery) elGallery.classList.remove('display-hide');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 function onClickLinkMems() {
   let elMemesGen = document.querySelector('.memes-generator');
@@ -180,8 +183,10 @@ function onClickLinkMems() {
   let isHideGallery = elGallery.classList.contains('display-hide');
   if (!isHideGallery) elGallery.classList.add('display-hide');
   if (isHideMemesGen) elMemesGen.classList.remove('display-hide');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 function downloadImg(elLink) {
+  console.log('gCanvas:', gCanvas);
   var imgContent = gCanvas.toDataURL('image/jpeg');
   elLink.href = imgContent;
 }
@@ -190,7 +195,7 @@ function toggleMenu() {
   const elMenu = document.querySelector('.mobile-menu');
   if (elMenu.classList.contains('display-hide')) {
     elMenu.classList.remove('display-hide');
-  }else {
+  } else {
     elMenu.classList.add('display-hide');
   }
 }
@@ -200,4 +205,48 @@ function withMenuToggle(func) {
   if (func) {
     func();
   }
+}
+function toggleImgOrientation(orientation) {
+  const elMemesGen = document.querySelector('.memes-generator');
+  switch (orientation) {
+    case 'landscape':
+    elMemesGen.classList.add('toggle-landscape');
+    elMemesGen.classList.remove('toggle-portrait');
+      break;
+    case 'portrait':
+    elMemesGen.classList.add('toggle-portrait');
+    elMemesGen.classList.remove('toggle-landscape');
+      break;
+    case 'square':
+    elMemesGen.classList.remove('toggle-portrait');
+    elMemesGen.classList.remove('toggle-landscape');
+
+      break;
+  }
+}
+
+function onImgInput(ev) {
+  loadImageFromInput(ev, (imageFromUser) => {
+    cleanCanvas();
+    setBackgroundImg(imageFromUser);
+  });
+}
+
+function loadImageFromInput(ev, onImageReady) {
+  if (ev && ev.target && ev.target.files && ev.target.files[0]) {
+    document.querySelector('.share-container').innerHTML = '';
+    var reader = new FileReader();
+
+    reader.onload = function (event) {
+      const imageFromUser = new Image();
+      imageFromUser.onload = onImageReady.bind(null, imageFromUser);
+      imageFromUser.src = event.target.result;
+      img = imageFromUser;
+    };
+    reader.readAsDataURL(ev.target.files[0]);
+  }
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }

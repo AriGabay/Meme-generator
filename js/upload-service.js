@@ -1,4 +1,5 @@
 function downloadImg(elLink) {
+  console.log('gCanvas:', gCanvas)
   var imgContent = gCanvas.toDataURL('image/jpeg');
   elLink.href = imgContent;
 }

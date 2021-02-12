@@ -1,0 +1,93 @@
+.grid {
+  display: grid;
+  width: 50%;
+  height: 50%;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-gap: 10px;
+  grid-template-areas:
+      " input-txt input-txt input-txt input-txt input-txt"
+      " show-line-number submit-btn btn-up btn-down file-input "
+      " share-grid select-row-txt button-plus button-remove btn-form "
+      " font-size-plus font-size-minus left-to-right center-txt right-to-left "
+      " select-orientation select-impcat select-impcat fill-txt outline-color-txt "
+}
+
+
+#input-txt {
+  grid-area: input-txt;
+}
+.file-input{
+  grid-area: file-input;
+}
+
+
+.share-grid {
+  grid-area: share-grid;
+}
+
+.select-row-txt {
+  grid-area: select-row-txt;
+}
+
+.button-plus {
+  grid-area: button-plus;
+}
+
+.button-remove {
+  grid-area: button-remove;
+}
+
+.font-size-plus {
+  grid-area: font-size-plus;
+}
+
+.font-size-minus {
+  grid-area: font-size-minus;
+}
+
+.left-to-right {
+  grid-area: left-to-right;
+}
+
+.center-txt {
+  grid-area: center-txt;
+}
+
+.right-to-left {
+  grid-area: right-to-left;
+}
+
+.select-impact {
+  grid-area: select-impcat;
+}
+
+.fill-txt {
+  grid-area: fill-txt;
+}
+
+.show-line-number {
+  grid-column: show-line-number;
+}
+
+.outline-color-txt {
+  grid-area: outline-color-txt;
+}
+
+.btn-up {
+  grid-area: btn-up;
+}
+
+.btn-down {
+  grid-area: btn-down;
+}
+
+.submit-btn {
+  grid-area: submit-btn;
+}
+.btn-form-area {
+  grid-area: btn-form;
+}
+.select-orientation{
+  grid-area: select-orientation;
+}

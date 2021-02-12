@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>index</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-grid.css">
+    <link rel="stylesheet" href="css/style-for-tablet.css">
+    <link rel="stylesheet" href="css/style-for-mobile.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
@@ -43,12 +46,12 @@
         </div>
         <div class="memes-generator space-evenly-flex display-hide">
             <div class="canvas-container">
-                <canvas id="my-canvas" width="500" height="500"></canvas>
+                <canvas id="my-canvas"></canvas>
             </div>
             <div class="actions-on-meme grid">
                 <div id="input-txt">
-                    <input type="txt" placeholder="Input Text" name="input-txt"
-                        onchange="onChnageTextInput(this.value)" oninput="onChnageTextInput(this.value)" onfocus="startCursor()" onblur="endCursor()" />
+                    <input type="txt" placeholder="Input Text" name="input-txt" onchange="onChnageTextInput(this.value)"
+                        oninput="onChnageTextInput(this.value)" onfocus="startCursor()" onblur="endCursor()" />
                 </div>
                 <div class="select-row-txt">
                     <button type="button" class="button-generator"><img
@@ -56,7 +59,6 @@
                             onclick="onChangeLine()">
                     </button>
                 </div>
-
                 <div class="show-line-number">
                     Line: <span>0</span>
                 </div>
@@ -100,7 +102,16 @@
                         <option value=" Ariel">Ariel</option>
                     </select>
                 </div>
-
+                <div class="select-orientation center-flex">
+                    <select onchange="toggleImgOrientation(this.value)">
+                        <option value="square">square</option>
+                        <option value="portrait">portrait</option>
+                        <option value="landscape">Landscape</option>
+                    </select>
+                </div>
+                <div class="file-input center-flex">
+                    <input type="file" class="file-input-btn btn" name="image" onchange="onImgInput(event)">
+                </div>
                 <div class="fill-txt">
                     <input type="color" name="fill-txt" onchange="onSetColorFill(this.value)">
                 </div>
