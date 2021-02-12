@@ -59,5 +59,8 @@
   .memes-generator.toggle-landscape{
     height: 900px;
   }
+  .memes-generator.toggle-portrait{
+    height: 900px;
+  }
 
 }
