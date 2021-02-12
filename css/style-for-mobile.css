@@ -54,7 +54,7 @@
   .mobile-menu {
       background-color: #FF7F00;
       display: inline-block;
-      position: fixed;
+      position: absolute;
       top: 36px;
       right: 0;
       padding: 8px 16px;
