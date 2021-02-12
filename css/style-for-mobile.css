@@ -94,5 +94,11 @@
   width: 300px;
   height: calc((300px/16)*9);
 }
+.memes-generator.toggle-landscape{
+  height: 550px;
+}
+.memes-generator.toggle-portrait {
+  height: 770px;
+}
 
 }
