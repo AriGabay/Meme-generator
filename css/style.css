@@ -10,6 +10,9 @@ body {
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
+p{
+    font-size: 1rem;
+}
 
 .nav-container {
     padding: 5px 0;
