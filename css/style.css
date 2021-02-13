@@ -18,10 +18,6 @@ body {
     width: 100%;
 }
 
-/* nav {
-    margin-bottom: 2rem;
-} */
-
 .nav-logo img {
     margin-inline-start: 3.125rem;
     width: 8.3125rem;
@@ -130,6 +126,7 @@ body {
     height: 100%;
     width: 100%;
 }
+
 .file-input .file-input-btn {
     white-space: pre-wrap;
     max-height: 70px;
@@ -298,11 +295,13 @@ body {
 .mobile-menu {
     display: none;
 }
+
 .toggle-portrait #my-canvas {
-    width:400px ;
+    width: 400px;
     height: calc((400px/9)*16);
 }
-.toggle-landscape #my-canvas{
+
+.toggle-landscape #my-canvas {
     width: 750px;
     height: calc((750px/16)*9);
 }

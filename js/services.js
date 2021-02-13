@@ -16,10 +16,10 @@ var gMeme = {
       outline: 'black',
       yPos: yStart,
       fontFamily: 'Impact',
+      isDragging: false,
     },
   ],
 };
-
 function changeLine() {
   if (gMeme.selectedLineIdx >= gMeme.lines.length - 1) {
     gMeme.selectedLineIdx = 0;
@@ -38,6 +38,7 @@ function addLine() {
     outline: 'red',
     yPos: lastLine.yPos + 100,
     fontFamily: 'Impact',
+    isDragging: false,
   });
   gMeme.selectedLineIdx = gMeme.lines.length - 1;
 }
@@ -115,6 +116,6 @@ function startCursorInterval() {
 }
 
 function stopCursorInterval() {
-  clearInterval(cursorInterval)
+  clearInterval(cursorInterval);
   removeCursor();
 }

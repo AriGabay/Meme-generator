@@ -3,9 +3,7 @@
     width: 400px;
     height: 400px;
   }
-  /* .memes-generator{
-    height: 720px;
-  } */
+
   .actions-on-meme input {
     height: 50%;
     width: 100%;
@@ -52,14 +50,17 @@
       " font-size-plus font-size-minus left-to-right center-txt right-to-left "
       " select-orientation select-impcat select-impcat fill-txt outline-color-txt ";
   }
+
   .toggle-portrait #my-canvas {
     width: 300px;
     height: calc((300px/9)*16);
   }
-  .memes-generator.toggle-landscape{
+
+  .memes-generator.toggle-landscape {
     height: 900px;
   }
-  .memes-generator.toggle-portrait{
+
+  .memes-generator.toggle-portrait {
     height: 950px;
   }
 

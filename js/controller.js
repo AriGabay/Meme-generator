@@ -86,9 +86,11 @@ function toggleMemesGenerator(imgId) {
   img.src = `img/${imgId}.jpg`;
   img.onload = () => {
     setBackgroundImg(img);
+    initDragAndDrop();
   };
 }
 function setBackgroundImg(image) {
+  console.log('image:', image);
   gCtx.drawImage(image, 0, 0, gCanvas.width, gCanvas.height);
 }
 
@@ -111,6 +113,8 @@ function onChnageTextInput(textInput) {
 }
 
 function drawText(line) {
+  if (!line) return;
+  console.log('line:', line);
   const { outline, align, txt, yPos, color, fontSize, fontFamily } = line;
   gCtx.lineWidth = 2;
   gCtx.strokeStyle = outline;
@@ -123,6 +127,7 @@ function drawText(line) {
 
 function onChangeLine() {
   changeLine();
+  initDragAndDrop();
   updateLineDisplay();
 }
 
@@ -210,16 +215,16 @@ function toggleImgOrientation(orientation) {
   const elMemesGen = document.querySelector('.memes-generator');
   switch (orientation) {
     case 'landscape':
-    elMemesGen.classList.add('toggle-landscape');
-    elMemesGen.classList.remove('toggle-portrait');
+      elMemesGen.classList.add('toggle-landscape');
+      elMemesGen.classList.remove('toggle-portrait');
       break;
     case 'portrait':
-    elMemesGen.classList.add('toggle-portrait');
-    elMemesGen.classList.remove('toggle-landscape');
+      elMemesGen.classList.add('toggle-portrait');
+      elMemesGen.classList.remove('toggle-landscape');
       break;
     case 'square':
-    elMemesGen.classList.remove('toggle-portrait');
-    elMemesGen.classList.remove('toggle-landscape');
+      elMemesGen.classList.remove('toggle-portrait');
+      elMemesGen.classList.remove('toggle-landscape');
 
       break;
   }

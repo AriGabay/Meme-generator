@@ -1,14 +1,12 @@
 function downloadImg(elLink) {
-  console.log('gCanvas:', gCanvas)
+  console.log('gCanvas:', gCanvas);
   var imgContent = gCanvas.toDataURL('image/jpeg');
   elLink.href = imgContent;
 }
 
-// on submit call to this function
 function uploadImg(elForm, ev) {
   ev.preventDefault();
   document.getElementById('imgData').value = gCanvas.toDataURL('image/jpeg');
-  // A function to be called if request succeeds
   function onSuccess(uploadedImgUrl) {
     uploadedImgUrl = encodeURIComponent(uploadedImgUrl);
     const shareEl = document.querySelector('.share-container');
